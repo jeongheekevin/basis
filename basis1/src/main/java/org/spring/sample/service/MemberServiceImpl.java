@@ -6,12 +6,13 @@ import javax.inject.Inject;
 
 import org.spring.sample.dao.MemberDAO;
 import org.spring.sample.dto.MemberVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImpl implements MemberService {
  
-    @Inject
+    @Autowired
     private MemberDAO dao;
     
     @Override
