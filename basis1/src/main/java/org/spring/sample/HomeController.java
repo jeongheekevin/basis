@@ -37,6 +37,18 @@ public class HomeController {
 	 
 	        return "home";
 	    }
+	 
 
+		@RequestMapping(value = "/tables.do", method = RequestMethod.GET)
+		public String tables() {
+			return "tables";
+		}
+		
+		@RequestMapping(value = "/index.do", method = RequestMethod.GET)
+		public String index() {
+			return "index";
+		}
+		
+		
 	
 }
