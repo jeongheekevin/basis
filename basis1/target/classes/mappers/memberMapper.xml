@@ -12,11 +12,8 @@
 	</select> 이렇게 해야 한다. -->
 
 	<select id="selectMember" resultType="memberVO">
-		SELECT ID, PW ,userName FROM TEST
+		SELECT ID, PW ,userName FROM TEST order by CAST(RIGHT(ID,LEN(ID)-2) AS INT) 
 	</select>
-
-
-
 
 </mapper>
 

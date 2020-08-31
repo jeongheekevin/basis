@@ -40,7 +40,11 @@ public class HomeController {
 	 
 
 		@RequestMapping(value = "/tables.do", method = RequestMethod.GET)
-		public String tables() {
+		public String tables(Locale locale, Model model) throws Exception {
+			  logger.info("tables");
+			  List<MemberVO> memberList = service.selectMember();
+		      model.addAttribute("memberList", memberList);
+		      
 			return "tables";
 		}
 		
@@ -49,6 +53,25 @@ public class HomeController {
 			return "index";
 		}
 		
+		@RequestMapping(value = "/license.do", method = RequestMethod.GET)
+		public String license(Locale locale, Model model) throws Exception{
+			 logger.info("license");
+			 List<MemberVO> memberList = service.selectMember();
+		     model.addAttribute("memberList", memberList);
+			return "T32LicensePage";
+		}
 		
+		@RequestMapping(value = "/body.do", method = RequestMethod.GET)
+		public String body(Locale locale, Model model) throws Exception {
+			 logger.info("body");
+			 List<MemberVO> memberList = service.selectMember();
+		     model.addAttribute("memberList", memberList);
+			return "T32BodyPage";
+		}
+		
+		@RequestMapping(value = "/addPage.do", method = RequestMethod.GET)
+		public String addPage() {
+			return "addPage";
+		}
 	
 }

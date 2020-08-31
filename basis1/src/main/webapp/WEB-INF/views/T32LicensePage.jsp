@@ -132,13 +132,13 @@
           <span>Charts</span></a>
       </li>
 -->
-      <!-- Nav Item - Tables 
+      <!-- Nav Item - Tables  -->
       <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="body.do">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>T32 Bodies</span></a>
       </li>
--->
+
       <!-- Divider 
       <hr class="sidebar-divider d-none d-md-block"> -->
 
@@ -369,6 +369,8 @@
 											<th>아이디</th>
 											<th>비밀번호</th>
 											<th>이름</th>
+											<th>edit</th>
+											<th>delete</th>
 										</tr>
 									</thead>
 
@@ -377,6 +379,8 @@
 											<th>아이디</th>
 											<th>비밀번호</th>
 											<th>이름</th>
+											<th>edit</th>
+											<th>delete</th>
 										</tr>
 									</tfoot>
 									<tbody>
@@ -385,6 +389,16 @@
 												<td>${member.id}</td>
 												<td>${member.pw}</td>
 												<td>${member.name}</td>
+												<td>
+													<a href="#" class="btn btn-success btn-circle">
+														<i class="fas fa-check"></i>
+													</a>
+												</td>
+												<td>
+													<a href="#" class="btn btn-danger btn-circle">
+														<i class="fas fa-trash"></i>
+													</a>
+												</td>
 											</tr>
 										</c:forEach>
 								</tbody>

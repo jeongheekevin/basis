@@ -14,7 +14,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>T32 License Page</title>
+  <title>T32 Body Page</title>
 
   <!-- Custom fonts for this template -->
   <link href="resources/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -132,13 +132,13 @@
           <span>Charts</span></a>
       </li>
 -->
-      <!-- Nav Item - Tables 
+      <!-- Nav Item - Tables  -->
       <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="license.do">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>T32 Licenses</span></a>
       </li>
--->
+
       <!-- Divider 
       <hr class="sidebar-divider d-none d-md-block"> -->
 
@@ -357,18 +357,19 @@
           <div class="card shadow mb-4">
             
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">T32 License</h6>
+              <h6 class="m-0 font-weight-bold text-primary">T32 Bodies</h6>
             </div>
             
             <div class="card-body">
-            
-              <div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <div class="table-responsive">  
+             	 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
 											<th>아이디</th>
 											<th>비밀번호</th>
 											<th>이름</th>
+											<th>edit</th>
+											<th>delete</th>
 										</tr>
 									</thead>
 
@@ -377,6 +378,8 @@
 											<th>아이디</th>
 											<th>비밀번호</th>
 											<th>이름</th>
+											<th>edit</th>
+											<th>delete</th>
 										</tr>
 									</tfoot>
 									<tbody>
@@ -385,6 +388,16 @@
 												<td>${member.id}</td>
 												<td>${member.pw}</td>
 												<td>${member.name}</td>
+												<td style="width:100px">
+													<a href="#" class="btn btn-success btn-circle">
+														<i class="fas fa-check"></i>
+													</a>
+												</td>
+												<td style="width:100px;align:center">
+													<a href="#" class="btn btn-danger btn-circle">
+														<i class="fas fa-trash"> </i>
+													</a>
+												</td>
 											</tr>
 										</c:forEach>
 								</tbody>
