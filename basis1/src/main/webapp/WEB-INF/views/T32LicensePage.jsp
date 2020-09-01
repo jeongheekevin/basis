@@ -320,6 +320,8 @@
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
          
+         
+         
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -363,12 +365,12 @@
             <div class="card-body">
             
               <div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>아이디</th>
-											<th>비밀번호</th>
-											<th>이름</th>
+											<th>SerialNumber</th>
+											<th>LicenseType</th>
+											<th>LicenseName</th>
 											<th>edit</th>
 											<th>delete</th>
 										</tr>
@@ -384,25 +386,29 @@
 										</tr>
 									</tfoot>
 									<tbody>
-										<c:forEach items="${memberList}" var="member">
+										<c:forEach items="${licenseInfoList}" var="licenseInfo">
 											<tr>
-												<td>${member.id}</td>
-												<td>${member.pw}</td>
-												<td>${member.name}</td>
-												<td>
+												<td>${licenseInfo.serialNumber}</td>
+												<td>${licenseInfo.licenseType}</td>
+												<td>${licenseInfo.licenseName}</td>
+												
+												
+												<td style="width:100px">
 													<a href="#" class="btn btn-success btn-circle">
 														<i class="fas fa-check"></i>
 													</a>
 												</td>
-												<td>
+												<td style="width:100px;align:center">
 													<a href="#" class="btn btn-danger btn-circle">
-														<i class="fas fa-trash"></i>
+														<i class="fas fa-trash"> </i>
 													</a>
 												</td>
 											</tr>
 										</c:forEach>
 								</tbody>
 						</table>
+						
+						
 				</div>
             </div>
           </div>

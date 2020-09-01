@@ -380,11 +380,11 @@
 										</tr>
 									</tfoot>
 									<tbody>
-										<c:forEach items="${memberList}" var="member">
+										<c:forEach items="${licenseInfoList}" var="license">
 											<tr>
-												<td>${member.id}</td>
-												<td>${member.pw}</td>
-												<td>${member.name}</td>
+												<td>${license.serialNumber}</td>
+												<td>${license.licenseType}</td>
+												<td>${license.licenseName}</td>
 											</tr>
 										</c:forEach>
 								</tbody>

@@ -7,7 +7,9 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spring.sample.dto.LicenseInfoVO;
 import org.spring.sample.dto.MemberVO;
+import org.spring.sample.service.LicenseInfoService;
 import org.spring.sample.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,16 +27,16 @@ public class HomeController {
 	
 	@Autowired
     private MemberService service;
+	
+	@Autowired
+	private LicenseInfoService licenseInfoService;
     
 	 @RequestMapping(value = "/", method = RequestMethod.GET)
 	    public String home(Locale locale, Model model) throws Exception{
 	 
 	        logger.info("home");
-	        
 	        List<MemberVO> memberList = service.selectMember();
-	        
 	        model.addAttribute("memberList", memberList);
-	 
 	        return "home";
 	    }
 	 
@@ -45,6 +47,9 @@ public class HomeController {
 			  List<MemberVO> memberList = service.selectMember();
 		      model.addAttribute("memberList", memberList);
 		      
+		      List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
+			  model.addAttribute("licenseInfoList", licenseInfoList);
+			  
 			return "tables";
 		}
 		
@@ -53,25 +58,25 @@ public class HomeController {
 			return "index";
 		}
 		
-		@RequestMapping(value = "/license.do", method = RequestMethod.GET)
-		public String license(Locale locale, Model model) throws Exception{
-			 logger.info("license");
-			 List<MemberVO> memberList = service.selectMember();
-		     model.addAttribute("memberList", memberList);
-			return "T32LicensePage";
-		}
-		
-		@RequestMapping(value = "/body.do", method = RequestMethod.GET)
-		public String body(Locale locale, Model model) throws Exception {
-			 logger.info("body");
-			 List<MemberVO> memberList = service.selectMember();
-		     model.addAttribute("memberList", memberList);
-			return "T32BodyPage";
-		}
-		
-		@RequestMapping(value = "/addPage.do", method = RequestMethod.GET)
-		public String addPage() {
-			return "addPage";
-		}
 	
+		@RequestMapping(value = "/dropdown.do", method = RequestMethod.GET)
+		public String dropdown(Locale locale, Model model) throws Exception {
+			
+			List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
+		    model.addAttribute("licenseInfoList", licenseInfoList);
+		     
+			
+			return "dropdown";
+		}
+		
+		@RequestMapping(value = "/insertPage.do", method = RequestMethod.GET)
+		public String insertPage(Locale locale, Model model) throws Exception {
+			
+			List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
+		    model.addAttribute("licenseInfoList", licenseInfoList);
+		     
+			
+			return "insertPage";
+		}
+		
 }

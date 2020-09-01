@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="org.spring.sample.memberMapper">
+<mapper namespace="org.spring.sample.T32Mapper">
 
 
 	<!-- mybatis-config.xml의 typeAlias에 등록해두지 않았다면 
@@ -14,6 +14,16 @@
 	<select id="selectMember" resultType="memberVO">
 		SELECT ID, PW ,userName FROM TEST order by CAST(RIGHT(ID,LEN(ID)-2) AS INT) 
 	</select>
-
+	
+	<select id="lisenseInfoList" resultType="licenseInfoVO">
+		SELECT * FROM LicenseInfo
+	</select>
+	
+<!--  	
+	<select id="lisenseInfoList" resultType="licenseInfoVO">
+		SELECT SerialNumber,LicenseType,LicenseName FROM LicenseInfo
+	</select>
+	-->
+	
 </mapper>
 
