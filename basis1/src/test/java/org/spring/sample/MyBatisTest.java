@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.spring.sample.dto.LicenseInfoVO;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  
@@ -28,6 +29,15 @@ public class MyBatisTest
             
             System.out.println(" >>>>>>>>>> session Ãâ·Â : "+session+"\n");
             
+            LicenseInfoVO vo = new LicenseInfoVO();
+            vo.setLicenseName("testName");
+            vo.setLicenseType("testType");
+            vo.setSerialNumber("testserial");
+            
+            session.insert("org.spring.sample.T32Mapper.insertLicenseInfo", vo);
+            session.commit();
+
+        
         } catch (Exception e) {
             e.printStackTrace();
         }
