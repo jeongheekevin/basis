@@ -17,78 +17,102 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	@Autowired
-    private MemberService service;
-	
+
 	@Autowired
 	private LicenseInfoService licenseInfoService;
-    
-	 @RequestMapping(value = "/", method = RequestMethod.GET)
-	    public String home(Locale locale, Model model) throws Exception{
-	 
-	        logger.info("home");
-	        List<MemberVO> memberList = service.selectMember();
-	        model.addAttribute("memberList", memberList);
-	        return "home";
-	    }
-	 
 
-		@RequestMapping(value = "/tables.do", method = RequestMethod.GET)
-		public String tables(Locale locale, Model model) throws Exception {
-			  logger.info("tables");
-			  List<MemberVO> memberList = service.selectMember();
-		      model.addAttribute("memberList", memberList);
-		      
-		      List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
-			  model.addAttribute("licenseInfoList", licenseInfoList);
-			  
-			return "tables";
-		}
-		
-		@RequestMapping(value = "/index.do", method = RequestMethod.GET)
-		public String index() {
-			return "index";
-		}
-		
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	public String home(Model model) throws Exception {
+
+		return "home";
+	}
 	
-		@RequestMapping(value = "/dropdown.do", method = RequestMethod.GET)
-		public String dropdown(Locale locale, Model model) throws Exception {
-			
-			List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
-		    model.addAttribute("licenseInfoList", licenseInfoList);
-		     
-			
-			return "dropdown";
-		}
+	
+	
+	//insertForm
+	@RequestMapping(value = "/insertForm.do", method = RequestMethod.GET)
+	public void insertForm() throws Exception {
 		
-		@RequestMapping(value = "/insertPage.do", method = RequestMethod.POST)
-		public String insertPage(Locale locale, Model model) throws Exception {
-			
-			List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
-		    model.addAttribute("licenseInfoList", licenseInfoList);
-		     
-		   
-			return "insertPage";
-		}
+		logger.info("insertForm Get");
+		//return "insertForm";
+	}
+	
+	//insertLicense
+	@RequestMapping(value = "/insertForm.do", method = RequestMethod.POST)
+	public String insertLicense(LicenseInfoVO licenseInfoVO, RedirectAttributes rttr) throws Exception {
 		
-		
-//		@RequestMapping("/insertprocess.do")
-//		public String deleteBoard(LicenseInfoVO vo) throws Exception {
-//			licenseInfoService.deleteBoard(vo);
-//			return "redirect:insertPage.do";
-//		}
-//		
+		logger.info("insertForm POST");
+		System.out.println(licenseInfoVO.getSerialNumber());
+		System.out.println(licenseInfoVO.getLicenseName());
+		System.out.println(licenseInfoVO.getLicenseType());
+		licenseInfoService.insertLicenseList(licenseInfoVO);
+		//SerialNumber, LicenseType, LicenseName
 		
 		
+		return "redirect:/list.do";
+	}
+	
+	
+	
+	//read list
+	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
+	public String getList(LicenseInfoVO licenseInfoVO, Model model) throws Exception {
+		logger.info("list");
+
+		List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList(licenseInfoVO);
+		model.addAttribute("licenseInfoList", licenseInfoList);
+		return "list";
+	}
+
+	
+	//return 없는것 의심해보기 
+	@RequestMapping(value = "/update.do", method = RequestMethod.GET)
+	public void updateGET(LicenseInfoVO licenseInfoVO) throws Exception {
+		
+		
+		logger.info("update Get");
+	}
+	
+	
+	@RequestMapping(value = "/update.do", method = RequestMethod.POST)
+	public String updatePOST(LicenseInfoVO licenseInfoVO, RedirectAttributes rttr) throws Exception {
+		
+		logger.info("update POST");
+		
+		System.out.println(licenseInfoVO.getSerialNumber());
+		System.out.println(licenseInfoVO.getLicenseName());
+		System.out.println(licenseInfoVO.getLicenseType());
+		
+		licenseInfoService.updateLicenseList(licenseInfoVO);
+		rttr.addFlashAttribute("msg","성공");
+		
+		return "redirect:/list.do";
+	}
+	
+	
+	//delete
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	public String deletePOST(LicenseInfoVO licenseInfoVO, RedirectAttributes rttr) throws Exception {
+		
+		logger.info("delete");
+		
+		licenseInfoService.deleteLicenseList(licenseInfoVO);
+		
+		return "redirect:/list.do";
+	}
+	
+	
+
 }

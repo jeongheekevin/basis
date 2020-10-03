@@ -12,40 +12,36 @@
 	</select> 이렇게 해야 한다. -->
 
 	<resultMap type="licenseInfoVO" id="rsLicenseInfo">
-		<result property="serial" column="SerialNumber"/>
-		<result property="type" column="LicenseType"/>
-		<result property="name" column="LicenseName"/>
+		<result property="serialNumber" column="SerialNumber"/>
+		<result property="licenseType" column="LicenseType"/>
+		<result property="licenseName" column="LicenseName"/>
 	</resultMap>
 
+	<insert id="serialtest" parameterType="licenseInfoVO" useGeneratedKeys="true" keyProperty="">
+		INSERT into LicenseInfo (SerialNumber) Values (#{serialNumber})
+	</insert>
 
-	<select id="selectMember" resultType="memberVO">
-		SELECT ID, PW ,userName FROM TEST order by CAST(RIGHT(ID,LEN(ID)-2) AS INT) 
-	</select>
-	
-	<select id="lisenseInfoList" resultType="licenseInfoVO">
-		SELECT * FROM LicenseInfo
+
+	<select id="selectlisenseInfo" resultType="licenseInfoVO">
+		SELECT SerialNumber, LicenseType, LicenseName FROM LicenseInfo
 	</select>
 	
 	<insert id="insertLicenseInfo" parameterType="licenseInfoVO" useGeneratedKeys="true" keyProperty="">
 		INSERT into LicenseInfo (SerialNumber, LicenseType, LicenseName) Values (#{serialNumber}, #{licenseType}, #{licenseName})
 	</insert>
 	
-	<insert id="serialtest" parameterType="licenseInfoVO" useGeneratedKeys="true" keyProperty="">
-		INSERT into LicenseInfo (SerialNumber) Values (#{serial})
-	</insert>
-	
 	
 	<update id="updateLicenseInfo" parameterType="licenseInfoVO">
 			UPDATE LicenseInfo
 			SET 
-				LicenseType = #{type}
-				LicenseName = #{name}
-			WHERE SerialNumber = #{serial}
+				LicenseType = #{licenseType},
+				LicenseName = #{licenseName}
+			WHERE SerialNumber = #{serialNumber}
 			
 	</update>
 	
 	<delete id="deleteLicenseInfo" parameterType="licenseInfoVO">
-		DELETE FROM LicenseInfo WHERE SerialNumber = #{serial}
+		DELETE FROM LicenseInfo WHERE SerialNumber = #{serialNumber}
 	</delete>
 	
 </mapper>

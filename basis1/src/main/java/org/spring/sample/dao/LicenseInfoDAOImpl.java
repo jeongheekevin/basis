@@ -16,25 +16,25 @@ public class LicenseInfoDAOImpl implements LicenseInfoDAO{
     private static final String Namespace = "org.spring.sample.T32Mapper";
     
     @Override
-	 public List<LicenseInfoVO> selectLicenseList() throws Exception {
+	 public List<LicenseInfoVO> selectLicenseList(LicenseInfoVO vo) throws Exception {
  
-        return sqlSession.selectList(Namespace+".lisenseInfoList");
+        return sqlSession.selectList(Namespace+".selectlisenseInfo",vo);
     }
 
 	@Override
-	public List<LicenseInfoVO> insertLicenseList() throws Exception {
+	public void insertLicenseList(LicenseInfoVO vo) throws Exception {
 		
-		   return sqlSession.selectList(Namespace+".insertLicenseInfo");
+		  sqlSession.insert(Namespace+".insertLicenseInfo",vo);
 	}
 
 	@Override
-	public List<LicenseInfoVO> updateLicenseList() throws Exception {
-		return sqlSession.selectList(Namespace+".updateLicenseInfo");
+	public void updateLicenseList(LicenseInfoVO vo) throws Exception {
+		sqlSession.update(Namespace+".updateLicenseInfo",vo);
 	}
 
 	@Override
-	public List<LicenseInfoVO> deleteLicenseList() throws Exception {
-		return sqlSession.selectList(Namespace+".deleteLicenseInfo");
+	public void deleteLicenseList(LicenseInfoVO vo) throws Exception {
+		sqlSession.delete(Namespace+".deleteLicenseInfo",vo);
 	}
 	
 

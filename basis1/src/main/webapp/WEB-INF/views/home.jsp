@@ -1,33 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ page session="false" %>
+
 <html>
 <head>
 <title>Home</title>
 </head>
+<form action = "getList.do" method="get">
 <body>
-    <h1>Hello world!</h1>
- 
-    <table>
-        <thead>
-            <tr>
-                <th>아이디</th>
-                <th>비밀번호</th>
-                <th>이름</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${memberList}" var="member">
-                <tr>
-                    <td>${member.id}</td>
-                    <td>${member.pw}</td>
-                    <td>${member.name}</td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
- 
- 
+<button type ="submit">CRUD게시판 가기</button>
+<h1>
+	Hello world!  
+</h1>
+<P>  The time on the server is ${serverTime}. </P>
 </body>
+</form>
 </html>
- 
