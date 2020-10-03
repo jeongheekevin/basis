@@ -9,6 +9,7 @@
 		<typeAlias type="org.spring.sample.dto.MemberVO" alias="memberVO" />
 		<typeAlias type="org.spring.sample.dto.LicenseInfoVO" alias="licenseInfoVO" />
 		
+		
 	</typeAliases>
 
 

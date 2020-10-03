@@ -8,5 +8,12 @@ import org.springframework.stereotype.Service;
 public interface LicenseInfoService {
 
 	 public List<LicenseInfoVO> selectLicenseList() throws Exception;
+	 public List<LicenseInfoVO> insertLicenseList() throws Exception;
+	 public List<LicenseInfoVO> updateLicenseList() throws Exception;
+	 public List<LicenseInfoVO> deleteLicenseList() throws Exception;
+	 
+	 
+	 
+	 
 	
 }

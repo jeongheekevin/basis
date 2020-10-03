@@ -14,8 +14,11 @@ import org.spring.sample.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
 
 /**
  * Handles requests for the application home page.
@@ -69,14 +72,23 @@ public class HomeController {
 			return "dropdown";
 		}
 		
-		@RequestMapping(value = "/insertPage.do", method = RequestMethod.GET)
+		@RequestMapping(value = "/insertPage.do", method = RequestMethod.POST)
 		public String insertPage(Locale locale, Model model) throws Exception {
 			
 			List<LicenseInfoVO> licenseInfoList = licenseInfoService.selectLicenseList();
 		    model.addAttribute("licenseInfoList", licenseInfoList);
 		     
-			
+		   
 			return "insertPage";
 		}
+		
+		
+//		@RequestMapping("/insertprocess.do")
+//		public String deleteBoard(LicenseInfoVO vo) throws Exception {
+//			licenseInfoService.deleteBoard(vo);
+//			return "redirect:insertPage.do";
+//		}
+//		
+		
 		
 }

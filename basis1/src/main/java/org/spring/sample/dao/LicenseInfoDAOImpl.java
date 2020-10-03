@@ -20,4 +20,24 @@ public class LicenseInfoDAOImpl implements LicenseInfoDAO{
  
         return sqlSession.selectList(Namespace+".lisenseInfoList");
     }
+
+	@Override
+	public List<LicenseInfoVO> insertLicenseList() throws Exception {
+		
+		   return sqlSession.selectList(Namespace+".insertLicenseInfo");
+	}
+
+	@Override
+	public List<LicenseInfoVO> updateLicenseList() throws Exception {
+		return sqlSession.selectList(Namespace+".updateLicenseInfo");
+	}
+
+	@Override
+	public List<LicenseInfoVO> deleteLicenseList() throws Exception {
+		return sqlSession.selectList(Namespace+".deleteLicenseInfo");
+	}
+	
+
 }
+
+

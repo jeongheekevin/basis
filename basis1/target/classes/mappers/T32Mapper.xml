@@ -11,6 +11,13 @@
 	SELECT ID, PW ,NAME FROM TEST
 	</select> 이렇게 해야 한다. -->
 
+	<resultMap type="licenseInfoVO" id="rsLicenseInfo">
+		<result property="serial" column="SerialNumber"/>
+		<result property="type" column="LicenseType"/>
+		<result property="name" column="LicenseName"/>
+	</resultMap>
+
+
 	<select id="selectMember" resultType="memberVO">
 		SELECT ID, PW ,userName FROM TEST order by CAST(RIGHT(ID,LEN(ID)-2) AS INT) 
 	</select>
@@ -19,11 +26,27 @@
 		SELECT * FROM LicenseInfo
 	</select>
 	
-<!--  	
-	<select id="lisenseInfoList" resultType="licenseInfoVO">
-		SELECT SerialNumber,LicenseType,LicenseName FROM LicenseInfo
-	</select>
-	-->
+	<insert id="insertLicenseInfo" parameterType="licenseInfoVO" useGeneratedKeys="true" keyProperty="">
+		INSERT into LicenseInfo (SerialNumber, LicenseType, LicenseName) Values (#{serialNumber}, #{licenseType}, #{licenseName})
+	</insert>
+	
+	<insert id="serialtest" parameterType="licenseInfoVO" useGeneratedKeys="true" keyProperty="">
+		INSERT into LicenseInfo (SerialNumber) Values (#{serial})
+	</insert>
+	
+	
+	<update id="updateLicenseInfo" parameterType="licenseInfoVO">
+			UPDATE LicenseInfo
+			SET 
+				LicenseType = #{type}
+				LicenseName = #{name}
+			WHERE SerialNumber = #{serial}
+			
+	</update>
+	
+	<delete id="deleteLicenseInfo" parameterType="licenseInfoVO">
+		DELETE FROM LicenseInfo WHERE SerialNumber = #{serial}
+	</delete>
 	
 </mapper>
 

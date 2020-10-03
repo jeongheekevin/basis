@@ -29,4 +29,9 @@ public class LicenseInfoVO {
 	public void setLicenseName(String licenseName) {
 		this.licenseName = licenseName;
 	}
+	
+	public String toString() {
+		return "LicenseInfoVO [serialNumber=" + serialNumber + ", licenseType=" + licenseType + ", licenseName="
+				+ licenseName + "]";
+	}
 }

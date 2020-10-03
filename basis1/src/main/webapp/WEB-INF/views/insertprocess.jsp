@@ -57,27 +57,45 @@
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	
 	
-	<div>
-		<form  action ="insertprocess.jsp" method="post">
-			<input type="text" name="serial"></input>
-			
-			<select name="type">
-				<c:forEach items="${licenseInfoList}" var="license">
-					<option>${license.licenseType}</option>
-				</c:forEach>
-			</select>
-			
-			<select name="name"">
-				<c:forEach items="${licenseInfoList}" var="license">
-					<option>${license.licenseName}</option>
-				</c:forEach>
-			</select>
-			
-			<input type="submit" value="전송">
-			
-		</form>
+<div>
+		<form action="insertBoard.do" method="post" enctype="multipart/form-data">
+<table border="1" cellpadding="0" cellspacing="0">
+<tr>
+	<td bgcolor="orange" width="70">제목</td><td align="left">
+	<input type="text" name="title" value="${board.title }"/></td>
+</tr>
+<tr>
+	<td bgcolor="orange">작성자</td><td align="left">
+	<input type="text" name="writer" size="10" value="${board.writer }"/></td>
+</tr>
+<tr>
+	<td bgcolor="orange">내용</td><td align="left">
+	<textarea name="content" cols="40" rows="10">${board.content }</textarea></td>
+</tr>
+<tr>
+	<td bgcolor="orange">업로드</td><td align="left">
+	<input type="file" name="uploardFile"/></td>
+</tr>
+<tr>
+	<td colspan="2" align="center">
+	<input type="submit" value=" 새글 등록 "/></td>
+</tr>
+</table>
+</form>
 
 	</div>
+
+<% 
+	String sn = request.getParameter("serial");
+	String tp = request.getParameter("type");
+	String nm = request.getParameter("name");
+	
+	System.out.println("serial");
+	System.out.println("type");
+	System.out.println("name");
+	
+	    
+%>
 
 
 			<footer class="sticky-footer bg-white">

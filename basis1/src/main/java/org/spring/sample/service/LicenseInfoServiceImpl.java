@@ -21,4 +21,22 @@ public class LicenseInfoServiceImpl implements LicenseInfoService {
 		
 	}
 
+
+	@Override
+	public List<LicenseInfoVO> insertLicenseList() throws Exception {
+		return dao.insertLicenseList();
+	}
+
+
+	@Override
+	public List<LicenseInfoVO> updateLicenseList() throws Exception {
+		return dao.updateLicenseList();
+	}
+
+
+	@Override
+	public List<LicenseInfoVO> deleteLicenseList() throws Exception {
+		return dao.deleteLicenseList();
+	}
+
 }
